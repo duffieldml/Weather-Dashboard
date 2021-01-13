@@ -15,19 +15,19 @@ function createButtons() {
     }
 }
 
-// function getWeather() {
-//     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKEY + "&units=imperial";
-//     $.ajax({
-//         url: queryURL,
-//         method: "GET"
-//       })
+function getWeather() {
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKEY + "&units=imperial";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
 
-//         .then(function (response) {
+        .then(function (response) {
 
-//             console.log(response);
-//         })
+            console.log(response);
+        })
         
-// }
+}
 
 
 
@@ -51,7 +51,6 @@ $("#run-search").on("click", function (event) {
             createButtons();
         });
 
-    //createButtons();
 })
 
 
