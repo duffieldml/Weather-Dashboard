@@ -1,8 +1,10 @@
 // Define list of items needed to produce functions
-//let searchCity = $(".search-data")
+let searchCity = $("#current-forecast")
 let searchedCities = [];
 let city
 let APIKEY = "7ca96097be63f6f51d3f8ccd3a2f5564";
+let presentTime = moment();
+let todayDate = moment().format("dddd, MMMM Do, YYYY");
 
 function createButtons() {
     $("#past-search-buttons").empty();
@@ -23,6 +25,9 @@ function getWeather() {
       })
 
         .then(function (response) {
+            //$("#list-group").html("")
+            var newDiv = $("<div class='currentWeather'>");
+            newDiv.html("<h2>Current Weather for: " + city);
 
             console.log(response);
         })
@@ -48,6 +53,10 @@ $("#run-search").on("click", function (event) {
             if (searchedCities.includes(response.name) === false ) {
                 searchedCities.push(response.name);
             }
+            //$("#list-group").html("")
+            var newDiv = $("<div class='currentWeather'>");
+            newDiv.html("<h2>Current Weather for: " + city);
+            console.log(todayDate)
             createButtons();
         });
 
