@@ -3,7 +3,6 @@ let searchCity = $("#current-forecast")
 let searchedCities = [];
 let city
 let APIKEY = "7ca96097be63f6f51d3f8ccd3a2f5564";
-//let presentTime = moment();
 let todayDate = moment().format("dddd, MMMM Do, h:mm a");
 
 function createButtons() {
@@ -53,7 +52,8 @@ $("#run-search").on("click", function (event) {
             if (searchedCities.includes(response.name) === false ) {
                 searchedCities.push(response.name);
             }
-            $("#searched-city").html("")
+            $("#searched-city").empty();
+            $("#current-weather-container").empty();
             var cityDiv = $("<div>");
             cityDiv.html("Current forecast for " + response.name);
             $("#searched-city").prepend(cityDiv);
