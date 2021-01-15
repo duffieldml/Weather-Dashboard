@@ -34,7 +34,6 @@ $("#run-search").on("click", function (event) {
     city = $("#city").val().trim();
     event.preventDefault();
     getWeather();
-    //getUV();
     //getFiveDay();
 })
 
@@ -42,7 +41,6 @@ $(document).on("click", "#past-searched-cities", function(event) {
     event.preventDefault();
     city = $(this).attr("data-name");
     getWeather();
-    //getUV();
     //getFiveDay();
 })
 
@@ -79,10 +77,11 @@ function getWeather() {
             $("#searched-city").prepend(cityDiv);
             $("#current-weather-container").append(p, p1, p2, p3);
 
+            // Variables for lat and lon. Need these for UV index API call
             var lon = response.coord.lon;
             var lat = response.coord.lat;
 
-
+            // UV Index API call
             var uvURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIKEY;
 
             // Perfoming an AJAX GET request to our queryURL
@@ -91,6 +90,7 @@ function getWeather() {
               method: "GET"
             })
                 .then(function (response) {
+                    //Gets response from API and appends it
                     var uvIndex = response.value;
                     var p4 = $("<p>").html("<i> UV Index: " + uvIndex + "</i>");
                     $("#current-weather-container").append(p4);
@@ -103,25 +103,9 @@ function getWeather() {
         });
 }
 
-//This needs reworking
-// function getUV() {
-//     var uvURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIKEY;
+function getFiveDay() {
 
-//     // Perfoming an AJAX GET request to our queryURL
-//     $.ajax({
-//         url: uvURL,
-//         method: "GET"
-//     })
-//         .then(function (response) {
-//             var uvIndex = response.value;
-//             var p4 = $("<p>").html("<i> UV Index: " + uvIndex + "</i>");
-//             $("#current-weather-container").append(p4);
-//             console.log(response.value);
-//         });
-
-// }
-
-
+}
 
 // $("#run-search").on("click", function (event) {
 //     city = $("#city").val().trim();
