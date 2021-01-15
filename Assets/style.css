@@ -4,6 +4,10 @@
     height: auto;
 }
 
-#day2 {
-    float: right;
+.card {
+    float: left;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    background-color: cornflowerblue;
+    text-align: center;
 }
