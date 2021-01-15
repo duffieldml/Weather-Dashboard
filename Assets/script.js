@@ -78,10 +78,10 @@ function getWeather() {
             cityDiv.html("Current forecast for " + response.name);
             
             // Pulls info from API and adds it into current-weather-container
-            var p = $("<p>").html("<i>" + todayDate + "</i>");
-            var p1 = $("<p>").html("<i> Temperature: " + response.main.temp.toFixed(0) + "&deg;F" + "</i>");
-            var p2 = $("<p>").html("<i> Humidity: " + response.main.humidity.toFixed(0) + "%" + "</i>");
-            var p3 = $("<p>").html("<i> Wind Speed: " + response.wind.speed.toFixed(0) + " MPH" + "</i>");
+            var p = $("<p>").html("<i>" + todayDate + "</i>").css({'font-weight': 'bold'});
+            var p1 = $("<p>").html("<i> Temperature: " + response.main.temp.toFixed(0) + "&deg;F" + "</i>").css({'font-weight': 'bold'});
+            var p2 = $("<p>").html("<i> Humidity: " + response.main.humidity.toFixed(0) + "%" + "</i>").css({'font-weight': 'bold'});
+            var p3 = $("<p>").html("<i> Wind Speed: " + response.wind.speed.toFixed(0) + " MPH" + "</i>").css({'font-weight': 'bold'});
             
             // Pulls icon code from API, adds attributes to img tag
             var iconImage = $("<img id = 'icon'>");
@@ -110,12 +110,20 @@ function getWeather() {
                 .then(function (response) {
                     //Gets response from API and appends it
                     var uvIndex = response.value;
-                    var p4 = $("<p>").html("<i> UV Index: " + uvIndex + "</i>");
-                    $("#current-weather-container").append(p4);
-                    //console.log(response.value);
+                    //if else statements for different color UV index
+                    if (uvIndex <= 2) {
+                        var p4 = $("<p class=col-md-2>").html("<i> UV Index: " + uvIndex + "</i>").css({'background-color': 'green', 'font-weight': 'bold'});  
+                        $("#current-weather-container").append(p4);
+                    } else if (uvIndex > 2 && uvIndex <=5) {
+                        var p4 = $("<p class=col-md-2>").html("<i> UV Index: " + uvIndex + "</i>").css({'background-color': 'yellow', 'font-weight': 'bold'});  
+                        $("#current-weather-container").append(p4);
+                    } else {
+                        var p4 = $("<p class=col-md-2>").html("<i> UV Index: " + uvIndex + "</i>").css({'background-color': 'red', 'font-weight': 'bold'});  
+                        $("#current-weather-container").append(p4);
+                    }
                 });
 
-
+                
             createButtons();
             savedSearches();
         });
