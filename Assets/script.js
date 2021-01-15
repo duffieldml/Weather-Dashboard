@@ -34,14 +34,14 @@ $("#run-search").on("click", function (event) {
     city = $("#city").val().trim();
     event.preventDefault();
     getWeather();
-    //getFiveDay();
+    fiveDay();
 })
 
 $(document).on("click", "#past-searched-cities", function(event) {
     event.preventDefault();
     city = $(this).attr("data-name");
     getWeather();
-    //getFiveDay();
+    fiveDay();
 })
 
 function getWeather() {
@@ -53,7 +53,7 @@ function getWeather() {
       method: "GET"
     })
         .then(function (response) {
-            console.log(response);
+            //console.log(response);
             if (searchedCities.includes(response.name) === false ) {
                 searchedCities.push(response.name);
             }
@@ -82,7 +82,7 @@ function getWeather() {
             var lat = response.coord.lat;
 
             // UV Index API call
-            var uvURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIKEY;
+            var uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIKEY;
 
             // Perfoming an AJAX GET request to our queryURL
             $.ajax({
@@ -94,7 +94,7 @@ function getWeather() {
                     var uvIndex = response.value;
                     var p4 = $("<p>").html("<i> UV Index: " + uvIndex + "</i>");
                     $("#current-weather-container").append(p4);
-                    console.log(response.value);
+                    //console.log(response.value);
                 });
 
 
@@ -103,8 +103,17 @@ function getWeather() {
         });
 }
 
-function getFiveDay() {
+function fiveDay() { 
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKEY + "&units=imperial";
 
+    // Perfoming an AJAX GET request to our queryURL
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+        .then(function (response) {
+            console.log(response);
+        })
 }
 
 // $("#run-search").on("click", function (event) {
