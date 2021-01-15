@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,66 +8,85 @@
     <link rel="stylesheet" href="assets/style.css">
     <title>It's Weather Time!</title>
 </head>
+
 <body>
-    <header class = "bg-dark text-white text-center p-2">
+    <header class="bg-dark text-white text-center p-2">
         <h1>Weather Dashboard</h1>
     </header>
     <main class="container-fluid">
-        <div class = "row">
-            <div class="col-12 col-md p-2 search column">
-                <form class = "border p-2" id = "city-search-form">
+        <div class="row">
+            <div class="col-12 col-md p-2 search column" id="search-field">
+                <form class="border p-2" id="city-search-form">
                     <h2>Search for a City</h2>
-                    <input id="city" type = "text" autofocus = "true" class = "search-city"/>
-                    <button class = "btn btn-primary" type = "submit" id="run-search">Search</button>
-                    <button class = "btn btn-secondary" type = "submit" id="clear-search">Reset</button>
+                    <input id="city" type="text" autofocus="true" class="search-city" />
+                    <button class="btn btn-primary" type="submit" id="run-search">Search</button>
+                    <button class="btn btn-secondary" type="submit" id="clear-search">Reset</button>
                 </form>
-                <div class = "past-search border" id = "past-search-buttons">
-    
+                <div class="past-search border" id="past-search-buttons">
+
                 </div>
             </div>
             <div class="col-12 col-md-9">
-                <div class = "row border selected-city" id = "current-forecast">
-                    <div class = "col-12">
+                <div class="row border selected-city" id="current-forecast">
+                    <div class="col-12">
                         <h2 id="searched-city"></h2>
-                        <div id = "current-weather-container" class = "list-group"></div>
+                        <div id="current-weather-container" class="list-group"></div>
                     </div>
                 </div>
-                <div class = "col-12" id = "five-day-forecast" style="display: none;">
-                    <h2 class= "col-12" id = "forecast">5 Day forecast</h2>
-                    <div class="d-flex-column" id = "fiveday-container">
-                        <div class="card" style="width: 18rem;">
+                <div class="col-12" id="five-day-forecast" style="display: none;">
+                    <!-- <div class = "col-12" id = "five-day-forecast"> -->
+                    <h2 class="col-12" id="forecast">5 Day forecast</h2>
+                    <div class="d-flex-column" id="fiveday-container">
+                        <div class="card" style="width: 10rem;">
                             <div class="day1">
+                                <h5 class="date1"></h5>
+                                <img class="img1">
+                                <p class="temp1"></p>
+                                <p class="hum1"></p>
                             </div>
                         </div>
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="width: 10rem;">
                             <div class="day2">
+                                <h5 class="date2"></h5>
+                                <img class="img2">
+                                <p class="temp2"></p>
+                                <p class="hum2"></p>
                             </div>
                         </div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="day2">
-                            </div>
-                        </div>
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="width: 10rem;">
                             <div class="day3">
+                                <h5 class="date3"></h5>
+                                <img class="img3">
+                                <p class="temp3"></p>
+                                <p class="hum3"></p>
                             </div>
                         </div>
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="width: 10rem;">
                             <div class="day4">
+                                <h5 class="date4"></h5>
+                                <img class="img4">
+                                <p class="temp4"></p>
+                                <p class="hum4"></p>
                             </div>
                         </div>
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="width: 10rem;">
                             <div class="day5">
+                                <h5 class="date5"></h5>
+                                <img class="img5">
+                                <p class="temp5"></p>
+                                <p class="hum5"></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-      
+
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="assets/script.js"></script>
 </body>
+
 </html>
