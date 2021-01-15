@@ -33,6 +33,7 @@ $(document).ready(function() {
 $("#run-search").on("click", function (event) {
     city = $("#city").val().trim();
     event.preventDefault();
+    $("#five-day-forecast").show();
     getWeather();
     fiveDay();
 })
@@ -40,6 +41,7 @@ $("#run-search").on("click", function (event) {
 $(document).on("click", "#past-searched-cities", function(event) {
     event.preventDefault();
     city = $(this).attr("data-name");
+    $("#five-day-forecast").show();
     getWeather();
     fiveDay();
 })
@@ -70,8 +72,7 @@ function getWeather() {
             
             var iconImage = $("<img id = 'icon'>");
             $("#searched-city").append(iconImage);
-            var iconEl = response.weather[0].icon;
-            var iconURL = "http://openweathermap.org/img/w/" + iconEl + ".png";
+            var iconURL = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
 
             $('#icon').attr('src', iconURL);
             $("#searched-city").prepend(cityDiv);
@@ -112,10 +113,47 @@ function fiveDay() {
       method: "GET"
     })
         .then(function (response) {
+            
+            $("#fiveday-container").empty();
+            
+
+            var date1 = new Date (response.list[2].dt_txt);
+            var date2 = new Date (response.list[10].dt_txt);
+
+            var temp1 = response.list[2].main.temp.toFixed(0);
+            var temp2 = response.list[10].main.temp.toFixed(0);
+
+            var hum1 = response.list[2].main.humidity.toFixed(0);
+            var hum2 = response.list[10].main.humidity.toFixed(0);
+
+            var forecastDiv1 = $("<div class= card sm-primary text-light m-2>").attr("id", "day1");
+            var forecastDiv2 = $("<div class= card sm-primary text-light m-2>").attr("id", "day2");
+
+            forecastDiv1.html(moment(date1).format("dddd, hA"));
+            forecastDiv2.html(moment(date2).format("dddd, hA"));
+
+            $("#fiveday-container").prepend(forecastDiv1, forecastDiv2);
+
+            var day1 = $("<p>").html("</b>" + "</br>" + "Temp: " + temp1 + " F </br>" + "Humidity: " + hum1 + "%");
+            var day2 = $("<p>").html("</b>" + "</br>" + "Temp: " + temp2 + " F </br>" + "Humidity: " + hum2 + "%");
+
+            $("#day1").append(day1);
+            $("#day2").append(day2);
+
+            // var img1 = "http://openweathermap.org/img/w/" + response.list[2].weather[0].icon + ".png";
+
             console.log(response);
+            console.log(date1);
+            console.log(temp1);
+            console.log(hum1);
+            // console.log(img1);
         })
 }
 
+
+
+
+// old code
 // $("#run-search").on("click", function (event) {
 //     city = $("#city").val().trim();
 //     event.preventDefault();
